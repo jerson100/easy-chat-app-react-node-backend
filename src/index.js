@@ -7,7 +7,6 @@ const io = new Server(server, {
   cors: {
     origin: process.env.FRONTED_URL || "*",
     methods: ["GET", "POST"],
-    credentials: true,
   },
 });
 
@@ -28,7 +27,6 @@ io.on("connection", (socket) => {
 app.get("/", (req, res) => {
   return res.json({
     name: "tontito",
-    url: process.env.FRONTED_URL,
   });
 });
 
