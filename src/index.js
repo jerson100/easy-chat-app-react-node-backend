@@ -9,7 +9,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
-
+console.log(process.env.FRONTED_URL);
 io.on("connection", (socket) => {
   socket.on("login", (us) => {
     console.log(`Usuario conectado: ${us}`);
