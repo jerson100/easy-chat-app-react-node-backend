@@ -5,22 +5,28 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: process.env.FRONTED_URL || "*",
     methods: ["GET", "POST"],
   },
 });
 
 io.on("connection", (socket) => {
-  socket.on("login", (us) => {});
+  socket.on("login", (us) => {
+    console.log(`Usuario conectado: ${us}`);
+  });
   socket.on("addComment", (comment) => {
-    console.log(comment);
-    socket.emit("newComment", comment);
+    io.emit("newComment", comment);
+  });
+  socket.on("e", (user) => {
+    console.log("---");
+    console.log(`El usuario: ${user} se ha desconectado`);
+    console.log("---");
   });
 });
 
 app.get("/", (req, res) => {
   return res.json({
-    name: "hola",
+    name: "tontito",
   });
 });
 
