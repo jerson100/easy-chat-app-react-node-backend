@@ -7,6 +7,7 @@ const io = new Server(server, {
   cors: {
     origin: process.env.FRONTED_URL || "*",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
